@@ -1,0 +1,27 @@
+package com.example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+public class WeAutomation {
+	public static void main(String [] arg) {
+		System.setProperty("webdriver.chrome.driver", "C:/tools/chromedriver/chromedriver.exe");
+		ChromeOptions options= new ChromeOptions();
+		options.addArguments("--satrt-maximized");
+		
+		WebDriver driver= new ChromeDriver(options);
+		
+		try{
+			driver.get("https://www.google.com");
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			driver.quit();
+		}
+	}
+
+}

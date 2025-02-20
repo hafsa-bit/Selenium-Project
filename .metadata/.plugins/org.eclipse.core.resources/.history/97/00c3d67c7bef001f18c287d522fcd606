@@ -1,0 +1,51 @@
+package com.example;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.JavascriptExecutor;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class LoginScript {
+	public static void main(String [] arg) {
+	WebDriverManager.chromedriver().setup();
+	
+	WebDriver driver= new ChromeDriver();
+	try{
+
+		   driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		   Thread.sleep(3000);
+		   //Enter User Name
+		   WebElement username=driver.findElement(By.name("username"));
+		   username.isDisplayed();
+		   username.isEnabled();
+		   username.sendKeys("admin");
+		   Thread.sleep(3000);
+		   // Enter Password
+		   WebElement password=driver.findElement(By.name("password"));
+		   password.isEnabled();
+		   password.isDisplayed();
+		   password.sendKeys("admin123");
+		   Thread.sleep(3000);
+		   
+		   //Click Login Button
+		   WebElement loginButton=driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+		   loginButton.isDisplayed();
+		   loginButton.isEnabled();
+		   loginButton.click();
+		   Thread.sleep(3000);
+		   //Asserting to ensure that LOgin Worked Properly
+		   
+		   WebElement welcom=driver.findElement(By.xpath("//h6[normalize-space()='Dashboard']"));
+		   welcom.isDisplayed();
+		   welcom.getText();
+		   System.out.println(welcom.getText());
+		
+	}
+	catch(Exception e){
+		e.printStackTrace();
+	}
+}
+}
