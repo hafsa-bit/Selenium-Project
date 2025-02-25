@@ -1,0 +1,31 @@
+package com.example;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class ClickAndHold {
+		public static void main(String [] arg) {
+			
+			WebDriverManager.chromedriver().setup();
+			WebDriver driver= new ChromeDriver();
+			driver.get("https://www.jqueryscript.net/demo/tap-hold-event-handler/");
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.manage().window().maximize();
+			WebElement clickAndHold=driver.findElement(By.id("1"));
+			
+			Actions act=new Actions(driver);
+			act.clickAndHold(clickAndHold).build().perform();
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
+			act.click();
+			
+			
+			
+		}
+}

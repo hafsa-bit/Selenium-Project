@@ -1,0 +1,36 @@
+package com.example;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class AutomateDropdown {
+	public static void main(String [] arg)
+	{
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/dropdown");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().window().maximize();
+		
+		Select dropdown=new Select(driver.findElement(By.id("dropdown")));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		dropdown.selectByIndex(1);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		dropdown.deselectByIndex(1);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		dropdown.selectByValue("2");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		dropdown.deselectByValue("2");
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		dropdown.deselectByVisibleText("Option 1");
+		   
+		
+	}
+
+}

@@ -1,0 +1,44 @@
+package com.example;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class CloseVSQuit {
+	public static void main(String [] arg) {
+	    //To open multiple Tab Instances
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/");
+		driver.manage().window().maximize();
+		String mainTab=driver.getWindowHandle();
+		System.out.println(mainTab);
+		
+		driver.switchTo().newWindow(WindowType.TAB);
+		driver.get("https://www.google.com/");
+		System.out.println(driver.getWindowHandles());
+		
+		driver.switchTo().window(mainTab);
+		System.out.println(driver.getTitle());
+		driver.close();   // Closes only Current Tab
+		driver.quit();    //Closes whole web Driver Instance
+		
+		// To open multiple window Instances
+		driver.get("https://the-internet.herokuapp.com/");
+		driver.manage().window().maximize();
+		String mainWindow=driver.getWindowHandle();
+		System.out.println(mainWindow);
+		
+		driver.switchTo().newWindow(WindowType.TAB);
+		driver.get("https://www.google.com/");
+		System.out.println(driver.getWindowHandles());
+		
+		driver.switchTo().window(mainWindow);
+		System.out.println(driver.getTitle());
+		driver.close();   // Closes only Current Wndow
+		driver.quit();    //Closes whole web Driver Instance
+}
+
+}

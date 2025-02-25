@@ -1,0 +1,28 @@
+package com.example;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class HandleWindowsAndTabs {
+public static void main(String [] arg) {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://the-internet.herokuapp.com/");
+		driver.manage().window().maximize();
+		String mainTab=driver.getWindowHandle();
+		System.out.println(mainTab);
+		
+		driver.switchTo().newWindow(WindowType.TAB);
+		driver.get("https://www.google.com/");
+		System.out.println(driver.getWindowHandles());
+		
+		driver.switchTo().window(mainTab);
+		System.out.println(driver.getTitle());
+		
+}
+
+}
